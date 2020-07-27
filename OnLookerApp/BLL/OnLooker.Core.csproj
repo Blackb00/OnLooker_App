@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38803DED-6565-488D-A20F-E80082E3312C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnLooker.Core</RootNamespace>
+    <AssemblyName>OnLooker.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\AParsingExpressions.cs" />
+    <Compile Include="Infrastructure\IDataBaseIO.cs" />
+    <Compile Include="Infrastructure\IDataInput.cs" />
+    <Compile Include="Infrastructure\IJobGateway.cs" />
+    <Compile Include="POCO\DTO\ArticleInfo.cs" />
+    <Compile Include="Infrastructure\IDataOutput.cs" />
+    <Compile Include="Infrastructure\IGateway.cs" />
+    <Compile Include="Infrastructure\ITagGateway.cs" />
+    <Compile Include="POCO\DTO\CurrencyInfo.cs" />
+    <Compile Include="POCO\ECurrencyType.cs" />
+    <Compile Include="POCO\DTO\QueryInfo.cs" />
+    <Compile Include="POCO\Entities\CCurrencyPair.cs" />
+    <Compile Include="POCO\Entities\CJob.cs" />
+    <Compile Include="POCO\Entities\CReport.cs" />
+    <Compile Include="POCO\DTO\CountryInfo.cs" />
+    <Compile Include="POCO\Entities\CCurrencyPairTimePrint.cs" />
+    <Compile Include="Services\CArticleService.cs" />
+    <Compile Include="POCO\Entities\CTag.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="POCO\DTO\UserAuthInfo.cs" />
+    <Compile Include="POCO\DTO\UserInfo.cs" />
+    <Compile Include="Services\CCountryService.cs" />
+    <Compile Include="Services\CJobGenerator.cs" />
+    <Compile Include="Services\CJsonService.cs" />
+    <Compile Include="Services\CParser.cs" />
+    <Compile Include="Services\CTagService.cs" />
+    <Compile Include="Services\CUserQueryInteractor.cs" />
+    <Compile Include="Services\SearchingMachine.cs" />
+    <Compile Include="Services\SearchingMachine2.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchingNews.WebService", "SearchingNewsWebService\SearchingNews.WebService.csproj", "{58B69126-E16E-4C2E-B957-862BE0B4B15A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchingNews.WebApiHost", "SearchingNewsWebApiHost\SearchingNews.WebApiHost.csproj", "{6F9A6418-6DC2-4FFA-AEDC-AF7CB2B8402A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58B69126-E16E-4C2E-B957-862BE0B4B15A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B69126-E16E-4C2E-B957-862BE0B4B15A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B69126-E16E-4C2E-B957-862BE0B4B15A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B69126-E16E-4C2E-B957-862BE0B4B15A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F9A6418-6DC2-4FFA-AEDC-AF7CB2B8402A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F9A6418-6DC2-4FFA-AEDC-AF7CB2B8402A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F9A6418-6DC2-4FFA-AEDC-AF7CB2B8402A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F9A6418-6DC2-4FFA-AEDC-AF7CB2B8402A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B89E0A55-4790-4560-A41D-E840FB893D64}
+	EndGlobalSection
+EndGlobal

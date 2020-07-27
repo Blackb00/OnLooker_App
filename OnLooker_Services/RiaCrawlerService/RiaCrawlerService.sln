@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiaCrawlerWCF", "RiaCrawlerWCF\RiaCrawlerWCF.csproj", "{2174DA00-2DA3-4EF2-8434-335B2F7B6F3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiaCrawler.Host", "RiaCrawler.Host\RiaCrawler.Host.csproj", "{184965E4-429E-4B66-9FF5-D052E58E7DE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2174DA00-2DA3-4EF2-8434-335B2F7B6F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2174DA00-2DA3-4EF2-8434-335B2F7B6F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2174DA00-2DA3-4EF2-8434-335B2F7B6F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2174DA00-2DA3-4EF2-8434-335B2F7B6F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{184965E4-429E-4B66-9FF5-D052E58E7DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{184965E4-429E-4B66-9FF5-D052E58E7DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{184965E4-429E-4B66-9FF5-D052E58E7DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{184965E4-429E-4B66-9FF5-D052E58E7DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A083B943-D7DC-439D-B1C4-8125B6C0557A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/veeamacademy
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = RiaCrawler.Host\\RiaCrawler.Host.csproj
+		SccProjectName1 = RiaCrawler.Host
+		SccLocalPath1 = RiaCrawler.Host
+		SccProjectUniqueName2 = RiaCrawlerWCF\\RiaCrawlerWCF.csproj
+		SccProjectName2 = RiaCrawlerWCF
+		SccLocalPath2 = RiaCrawlerWCF
+	EndGlobalSection
+EndGlobal

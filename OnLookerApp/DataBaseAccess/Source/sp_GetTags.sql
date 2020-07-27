@@ -1,0 +1,3 @@
+﻿CREATE PROCEDURE [sp_GetTags]
+AS
+SELECT * FROM Tag

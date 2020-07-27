@@ -1,0 +1,37 @@
+﻿{
+  "DbCreate": "CREATE DATABASE ONLOOKER\n",
+  "DbUse": "USE ONLOOKER\n",
+  "TablesCreate": {
+    "UserLogin": "CREATE TABLE UserLogin\n(ID INT PRIMARY KEY IDENTITY,\nLogin VARCHAR(15) NOT NULL,\nPassword VARCHAR(8) NOT NULL);\n",
+    "UserInfo": "CREATE TABLE UserInfo\n(ID INT PRIMARY KEY IDENTITY,\nName NVARCHAR(15) NOT NULL,\nEmail VARCHAR(50) UNIQUE NOT NULL,\nLoginID INT);\n",
+    "Country": "CREATE TABLE Country\n(ID INT PRIMARY KEY IDENTITY,\nCode VARCHAR(10),\nName VARCHAR(20));\n",
+    "Tag": "CREATE TABLE Tag\n(ID INT PRIMARY KEY IDENTITY,\nName VARCHAR(50));\n",
+    "CurrencyType": "CREATE TABLE CurrencyType\n(ID INT PRIMARY KEY IDENTITY,\nCurrencyCode VARCHAR(3),\nCurrencyName VARCHAR(20));\n",
+    "CurrencyPair": "CREATE TABLE CurrencyPair\n(ID INT PRIMARY KEY IDENTITY,\nBaseCurrencyID INT,\nQuotedCurrencyID INT,\nCONSTRAINT FK_CurrencyBase_CurrencyPair FOREIGN KEY (BaseCurrencyID)\nREFERENCES CurrencyType (ID) \nON DELETE CASCADE\nON UPDATE CASCADE,\nCONSTRAINT FK_CurrencyQuoted_CurrencyPair FOREIGN KEY (QuotedCurrencyID)\nREFERENCES CurrencyType (ID) \nON DELETE NO ACTION\nON UPDATE NO ACTION\n);\n",
+    "Job": "CREATE TABLE Job\n(ID INT PRIMARY KEY IDENTITY,\nCurrencyPairID INT NOT NULL,\nCountryID INT NOT NULL,\nTagID INT NOT NULL,\nCONSTRAINT FK_Job_CurrencyPair FOREIGN KEY (CurrencyPairID)\nREFERENCES CurrencyPair (ID)\nON DELETE CASCADE\nON UPDATE CASCADE,\nCONSTRAINT FK_Job_Country FOREIGN KEY (CountryID)\nREFERENCES Country\nON DELETE CASCADE\nON UPDATE CASCADE,\nCONSTRAINT FK_Job_Tag FOREIGN KEY (TagID)\nREFERENCES Tag\nON DELETE CASCADE\nON UPDATE CASCADE\n);\n",
+    "UserJobs": "CREATE TABLE UserJobs\n(ID INT PRIMARY KEY IDENTITY,\nUserID INT NOT NULL,\nJobID INT NOT NULL,\nCONSTRAINT FK_UserInfo_Job FOREIGN KEY (UserID)\nREFERENCES UserInfo(ID) \nON DELETE CASCADE\nON UPDATE CASCADE,\nCONSTRAINT FK_Job_UserInfo FOREIGN KEY (JobID)\nREFERENCES Job (ID)\nON DELETE CASCADE\nON UPDATE CASCADE);\n",
+    "Article": "CREATE TABLE Article\n(ID INT PRIMARY KEY IDENTITY,\nURL VARCHAR(100),\nTitle NVARCHAR(256),\nContent NVARCHAR(max),\nHTML VARBINARY(max),\nDate DATE,\nCountryID INT\nCONSTRAINT FK_Country_Article FOREIGN KEY (CountryID)\nREFERENCES Country (ID)\nON DELETE CASCADE\nON UPDATE CASCADE);\n",
+    "ArticleTag": "CREATE TABLE ArticleTag\n(ID INT PRIMARY KEY IDENTITY,\nArticleID INT NOT NULL,\nTagID INT NOT NULL,\nCONSTRAINT FK_Article_Tag FOREIGN KEY (ArticleID)\nREFERENCES Article(ID) \nON DELETE CASCADE\nON UPDATE CASCADE,\nCONSTRAINT FK_Tag_Article FOREIGN KEY (TagID)\nREFERENCES Tag (ID)\nON DELETE CASCADE\nON UPDATE CASCADE);\n",
+    "Report": "CREATE TABLE Report\n(ID INT PRIMARY KEY IDENTITY,\nJobID INT NOT NULL,\nCONSTRAINT FK_Report_Job FOREIGN KEY (JobID)\nREFERENCES Job (ID) \nON DELETE CASCADE\nON UPDATE CASCADE);\n",
+    "CurrencyPairTimePrint": "CREATE TABLE CurrencyPairTimePrint\n(ID INT PRIMARY KEY IDENTITY,\nBid DECIMAL NOT NULL,\nAsk DECIMAL NOT NULL,\nDateTime DATE,\nCurrencyPairID INT NOT NULL,\nCONSTRAINT FK_CurrencyPair_TimePrINT FOREIGN KEY (CurrencyPairID)\nREFERENCES CurrencyPair(ID) \nON DELETE CASCADE\nON UPDATE CASCADE);\n",
+    "ReportCurPairTomePrints": "CREATE TABLE ReportCurPairTimePrints\n(ID INT PRIMARY KEY IDENTITY,\nCurPairTimePrintID INT NOT NULL,\nReportID INT NOT NULL,\nCONSTRAINT FK_CPTimePrnt_Report FOREIGN KEY (CurPairTimePrintID)\nREFERENCES CurrencyPairTimePrint(ID) \nON DELETE NO ACTION\nON UPDATE NO ACTION,\nCONSTRAINT FK_Report_CPTimePrnt FOREIGN KEY (ReportID)\nREFERENCES Report (ID)\nON DELETE CASCADE ON UPDATE CASCADE);\n",
+    "MigrationHistory": "CREATE TABLE MigrationHistory\n(ID INT PRIMARY KEY IDENTITY,\nMajorVersion VARCHAR(2),\nMinorVersion VARCHAR(2),\nFileNumber VARCHAR(4),\nComment VARCHAR(255),\nDateApplied DATETIME);\n",
+    "Logs": "CREATE TABLE Logs\n(ID INT PRIMARY KEY IDENTITY,\nLogLevel VARCHAR(20),\nMessage VARCHAR(200),\nCreatedOn DATE);\n"
+  },
+  "StoredProceduresCreate": {
+    "GetArticles": "CREATE PROCEDURE [sp_GetArticles]\nAS\nSELECT  Article.ID,\nArticle.URL,\nArticle.Title,\nArticle.Content,\nArticle.HTML,\nArticle.CountryID,\nArticle.Date as Article , \nTag.Name as Tag\nFROM ArticleTag\nINNER JOIN Article\nON ArticleTag.ArticleID = Article.ID\nInner JOIN Tag\nON ArticleTag.TagID = Tag.ID;\n",
+    "GetArticleTagRelations": "CREATE PROCEDURE [sp_GetArticleTagRelations]\nAS\nSELECT * FROM ArticleTag;\n",
+    "GetCountryById": "CREATE PROCEDURE [sp_GetCountryById]\n@id int\nAS\nSELECT * FROM Country\nWHERE ID = @id;\n",
+    "GetAllCountries": "CREATE PROCEDURE [sp_GetAllCountries]\nAS\nSELECT * FROM Country;\n", 
+    "GetTagByName": "CREATE PROCEDURE [sp_GetTagByName]\n@name nvarchar(50)\nAS\nSELECT * FROM Tag\nWHERE Name = @name;\n",
+    "GetTags": "CREATE PROCEDURE [sp_GetTags]\nAS\nSELECT * FROM Tag; \n",
+    "InsertArticle": "CREATE PROCEDURE [sp_InsertArticle]\n@url varchar(100),\n@title nvarchar(256),\n@content nvarchar(max),\n@html varbinary(max),\n@date date,\n@countryid int\nAS\nINSERT INTO Article (URL, Title, Content, HTML, Date, CountryID)\nVALUES (@url, @title, @content, @html, @date, @countryid)\nSELECT SCOPE_IDENTITY();\n",
+    "InsertArticleTag": "CREATE PROCEDURE [sp_InsertArticleTag]\n@tagId int,\n@articleId int\nAS\nINSERT INTO ArticleTag (ArticleID, TagID) VALUES (@articleId,@tagId)\nSELECT SCOPE_IDENTITY();\n",
+    "InsertTag": "CREATE PROCEDURE [sp_InsertTag]\n@name nvarchar(50)\nAS\nINSERT INTO Tag (Name)\nVALUES (@name)\nSELECT SCOPE_IDENTITY(); \n",
+    "InsertCountry": "CREATE PROCEDURE [sp_InsertCountry]\n@code varchar(10),\n@name varchar(20)\nAS\nINSERT INTO Country (Code, Name) VALUES (@code, @name)\nSELECT SCOPE_IDENTITY();\n",
+    "InsertVersion": "CREATE PROCEDURE [sp_InsertVersion]\n@major varchar(2),\n@minor varchar(2),\n@filenumber varchar(4),\n@comment varchar(25),\n@date datetime\nAS\nINSERT INTO MigrationHistory (MajorVersion, MinorVersion, FileNumber, Comment, DateApplied) VALUES (@major, @minor, @filenumber, @comment, @date)\nSELECT SCOPE_IDENTITY();\n"
+
+
+
+  }
+}
